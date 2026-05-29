@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monique Pavan · Desenvolvedora de Software</title>
+  <meta name="description" content="Portfolio de Monique Cardoso Pavan — Desenvolvedora de Software Full Stack." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #fafaf8;
+      --white: #ffffff;
+      --border: #ebebeb;
+      --text: #1a1a1a;
+      --muted: #888888;
+      --hint: #aaaaaa;
+      --faint: #cccccc;
+      --accent: #7c6af7;
+      --accent-bg: #f0eeff;
+      --accent-border: #ddd8ff;
+      --green: #2d9b6a;
+      --green-bg: #eefaf3;
+      --green-border: #c6eedd;
+      --red: #e74c3c;
+      --red-bg: #fef0f0;
+      --red-border: #fad5d5;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap { max-width: 780px; margin: 0 auto; padding: 0 2rem; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250,250,248,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav .inner {
+      max-width: 780px; margin: 0 auto; padding: 1rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .logo { font-family: 'DM Serif Display', serif; font-size: 19px; color: var(--text); letter-spacing: -0.3px; }
+    .logo em { font-style: italic; color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; font-weight: 400; transition: color .2s; }
+    .nav-links a:hover { color: var(--text); }
+
+    .hero { padding: 6rem 0 4rem; }
+
+    .chip {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--accent-bg); color: var(--accent);
+      font-size: 11px; font-weight: 500; padding: 5px 13px;
+      border-radius: 20px; margin-bottom: 1.6rem; letter-spacing: .3px;
+    }
+    .chip-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 400; line-height: 1.15;
+      letter-spacing: -1.5px; color: var(--text);
+      margin-bottom: 1.3rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--accent); }
+
+    .hero p { font-size: 14px; color: var(--muted); line-height: 1.9; max-width: 500px; margin-bottom: 2rem; font-weight: 300; }
+
+    .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 2.2rem; }
+    .tag {
+      font-size: 11px; padding: 5px 13px; border-radius: 20px;
+      border: 1px solid var(--border); color: var(--muted);
+      font-weight: 400; background: var(--white); transition: border-color .2s;
+    }
+    .tag:hover { border-color: #ccc; }
+    .tag.purple { background: var(--accent-bg); color: var(--accent); border-color: var(--accent-border); }
+    .tag.green  { background: var(--green-bg);  color: var(--green);  border-color: var(--green-border); }
+
+    .btns { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn {
+      font-size: 13px; padding: 11px 24px; border-radius: 100px;
+      font-family: 'DM Sans', sans-serif; font-weight: 500;
+      cursor: pointer; transition: all .2s; text-decoration: none; display: inline-block;
+    }
+    .btn-fill  { background: var(--text); color: var(--white); border: 1.5px solid var(--text); }
+    .btn-fill:hover { background: #333; border-color: #333; }
+    .btn-ghost { background: var(--white); color: var(--text); border: 1.5px solid var(--border); }
+    .btn-ghost:hover { border-color: var(--text); }
+
+    section { padding: 4rem 0; border-top: 1px solid var(--border); }
+    .sec-eyebrow {
+      font-size: 11px; color: var(--accent); font-weight: 500;
+      letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: .8rem;
+    }
+    .sec-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.75rem; font-weight: 400; color: var(--text);
+      margin-bottom: 1.4rem; letter-spacing: -.5px;
+    }
+
+    .about-text { font-size: 14px; color: var(--muted); line-height: 2; max-width: 600px; font-weight: 300; }
+    .about-text strong { color: var(--text); font-weight: 400; }
+
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(135px, 1fr)); gap: .8rem; }
+    .skill-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.1rem 1.2rem; transition: border-color .2s;
+    }
+    .skill-card:hover { border-color: var(--accent-border); }
+    .skill-card h4 { font-size: 10px; font-weight: 500; letter-spacing: .8px; text-transform: uppercase; margin-bottom: 9px; }
+    .skill-card.frontend h4 { color: var(--accent); }
+    .skill-card.backend  h4 { color: var(--green); }
+    .skill-card.database h4 { color: #e67e22; }
+    .skill-card.security h4 { color: var(--red); }
+    .skill-card.devops   h4 { color: #2980b9; }
+    .skill-card p { font-size: 12px; color: var(--hint); line-height: 1.9; font-weight: 300; }
+
+    .projects-list { display: flex; flex-direction: column; gap: .8rem; }
+    .project {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 16px; padding: 1.4rem 1.5rem;
+      transition: border-color .2s; text-decoration: none;
+      display: block; color: inherit;
+    }
+    .project:hover { border-color: var(--accent-border); }
+    .proj-header {
+      display: flex; justify-content: space-between;
+      align-items: flex-start; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;
+    }
+    .proj-name { font-size: 14px; color: var(--text); font-weight: 500; }
+    .proj-badges { display: flex; gap: 5px; }
+    .pb { font-size: 10px; padding: 3px 9px; border-radius: 10px; font-weight: 500; border: 1px solid; }
+    .pb-sec  { background: var(--red-bg);    color: var(--red);    border-color: var(--red-border); }
+    .pb-web  { background: var(--accent-bg); color: var(--accent); border-color: var(--accent-border); }
+    .pb-tool { background: var(--green-bg);  color: var(--green);  border-color: var(--green-border); }
+    .pb-ai   { background: #fff8e1; color: #b8860b; border-color: #f5d87a; }
+    .pb-iot  { background: #e8f5e9; color: #2e7d32; border-color: #a5d6a7; }
+    .proj-desc { font-size: 12px; color: var(--hint); line-height: 1.85; margin-bottom: 10px; font-weight: 300; }
+    .proj-footer { display: flex; justify-content: space-between; align-items: center; }
+    .proj-stack { font-size: 11px; color: var(--faint); font-weight: 300; }
+    .proj-arrow { font-size: 11px; color: var(--accent); opacity: .4; transition: opacity .2s; }
+    .project:hover .proj-arrow { opacity: 1; }
+
+    .tcc-card {
+      margin-top: .8rem;
+      background: var(--accent-bg);
+      border: 1px solid var(--accent-border);
+      border-left: 3px solid var(--accent);
+      border-radius: 14px; padding: 1.4rem 1.5rem;
+    }
+    .tcc-label { font-size: 10px; color: var(--accent); font-weight: 500; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+    .tcc-title { font-size: 14px; color: var(--text); font-weight: 500; margin-bottom: 6px; }
+    .tcc-desc { font-size: 12px; color: var(--muted); line-height: 1.85; font-weight: 300; }
+    .tcc-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 10px; }
+    .tcc-tag { font-size: 10px; padding: 3px 9px; border-radius: 10px; font-weight: 400; background: var(--white); color: var(--accent); border: 1px solid var(--accent-border); }
+
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: .8rem; }
+    .contact-item {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1rem 1.2rem;
+      text-decoration: none; display: flex; align-items: center;
+      gap: 12px; transition: border-color .2s;
+    }
+    .contact-item:hover { border-color: var(--accent-border); }
+    .contact-icon {
+      width: 38px; height: 38px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; flex-shrink: 0;
+    }
+    .icon-email    { background: #fef9ec; }
+    .icon-github   { background: #f3f3f3; }
+    .icon-linkedin { background: #e8f0fe; }
+    .contact-info p    { font-size: 10px; color: var(--faint); font-weight: 400; letter-spacing: .5px; text-transform: uppercase; margin-bottom: 3px; }
+    .contact-info span { font-size: 12px; color: #555; font-weight: 400; }
+
+    footer { padding: 2.5rem 0 3rem; border-top: 1px solid var(--border); }
+    footer .inner {
+      max-width: 780px; margin: 0 auto; padding: 0 2rem;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    footer p { font-size: 12px; color: var(--faint); font-weight: 300; }
+    footer .heart { color: var(--accent); }
+
+    .fade-in { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2rem; }
+      .nav-links { gap: 1.2rem; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="inner">
+      <div class="logo">Monique <em>Pavan</em></div>
+      <ul class="nav-links">
+        <li><a href="#sobre">sobre</a></li>
+        <li><a href="#habilidades">skills</a></li>
+        <li><a href="#projetos">projetos</a></li>
+        <li><a href="#contato">contato</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="wrap">
+
+    <div class="hero">
+      <div class="chip"><span class="chip-dot"></span>Full Stack Developer</div>
+      <h1>Olá, eu sou<br><em>Monique Pavan</em></h1>
+      <p>Desenvolvedora de software com experiência em scripts, relatórios, integração e migração de dados. Apaixonada por tecnologia, segurança e automação.</p>
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">Node.js</span>
+        <span class="tag">React</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">Docker</span>
+        <span class="tag purple">Segurança Web</span>
+        <span class="tag green">IoT · ESP32</span>
+      </div>
+      <div class="btns">
+        <a href="#projetos" class="btn btn-fill">Ver projetos</a>
+        <a href="#contato" class="btn btn-ghost">Entrar em contato</a>
+      </div>
+    </div>
+
+    <section id="sobre" class="fade-in">
+      <p class="sec-eyebrow">sobre</p>
+      <h2 class="sec-title">Quem sou eu</h2>
+      <p class="about-text">
+        Sou desenvolvedora de software com atuação em <strong>desenvolvimento de extensões, scripts e relatórios customizados</strong>, integração e tratamento de dados entre sistemas, migração de bases de dados e automação de rotinas.<br><br>
+        Tenho experiência com múltiplas linguagens e frameworks, tanto no backend quanto no frontend, além de interesse em <strong>segurança da informação</strong> e <strong>Internet das Coisas (IoT)</strong> — área do meu Trabalho de Conclusão de Curso.
+      </p>
+    </section>
+
+    <section id="habilidades" class="fade-in">
+      <p class="sec-eyebrow">habilidades</p>
+      <h2 class="sec-title">Stack & competências</h2>
+      <div class="skills-grid">
+        <div class="skill-card frontend"><h4>Frontend</h4><p>React · Next.js<br>JavaScript<br>HTML5 · CSS3<br>TypeScript</p></div>
+        <div class="skill-card backend"><h4>Backend</h4><p>Node.js · Python<br>Scripts & automação<br>REST API<br>Integrações</p></div>
+        <div class="skill-card database"><h4>Database</h4><p>PostgreSQL<br>MySQL · MongoDB<br>Migração de dados<br>SQL avançado</p></div>
+        <div class="skill-card security"><h4>Segurança</h4><p>OWASP Top 10<br>JWT · OAuth2<br>Práticas seguras<br>Pentest básico</p></div>
+        <div class="skill-card devops"><h4>DevOps & IoT</h4><p>Docker · Git<br>Linux · CI/CD<br>ESP32 · MQTT<br>Node-RED</p></div>
+      </div>
+    </section>
+
+    <section id="projetos" class="fade-in">
+      <p class="sec-eyebrow">projetos</p>
+      <h2 class="sec-title">O que construí</h2>
+      <div class="projects-list">
+
+        <a href="https://github.com/moniquepavan/tribuSim-backend" class="project" target="_blank" rel="noopener">
+          <div class="proj-header">
+            <span class="proj-name">TribuSim — Backend</span>
+            <div class="proj-badges"><span class="pb pb-web">backend</span><span class="pb pb-tool">simulação</span></div>
+          </div>
+          <p class="proj-desc">Backend de um simulador de tribos com gerenciamento de entidades, regras de negócio e APIs REST. Projeto que explora modelagem de sistemas complexos e lógica de simulação.</p>
+          <div class="proj-footer">
+            <span class="proj-stack">Node.js · REST API · Backend</span>
+            <span class="proj-arrow">→ github</span>
+          </div>
+        </a>
+
+        <a href="https://github.com/moniquepavan/faceSwap" class="project" target="_blank" rel="noopener">
+          <div class="proj-header">
+            <span class="proj-name">FaceSwap</span>
+            <div class="proj-badges"><span class="pb pb-ai">inteligência artificial</span><span class="pb pb-tool">visão computacional</span></div>
+          </div>
+          <p class="proj-desc">Projeto de troca de rostos em imagens utilizando técnicas de visão computacional e processamento de imagem. Explora o uso prático de IA aplicada a mídia.</p>
+          <div class="proj-footer">
+            <span class="proj-stack">Python · OpenCV · Visão Computacional</span>
+            <span class="proj-arrow">→ github</span>
+          </div>
+        </a>
+
+        <div class="tcc-card">
+          <p class="tcc-label">TCC · Trabalho de Conclusão de Curso</p>
+          <p class="tcc-title">Sistema IoT de Monitoramento Ambiental com ESP32, Node-RED e MQTT</p>
+          <p class="tcc-desc">Desenvolvimento de um sistema de Internet das Coisas para monitoramento ambiental utilizando o microcontrolador ESP32 como dispositivo de borda. O sistema integra sensores de temperatura, umidade, luminosidade e distância, comunicando-se via protocolo MQTT com um broker central e expondo uma API HTTP local — com automação de rotinas via Node-RED.</p>
+          <div class="tcc-tags">
+            <span class="tcc-tag">ESP32</span>
+            <span class="tcc-tag">MQTT</span>
+            <span class="tcc-tag">Node-RED</span>
+            <span class="tcc-tag">IoT</span>
+            <span class="tcc-tag">HTTP API</span>
+            <span class="tcc-tag">Sensores</span>
+            <span class="tcc-tag">Automação</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="contato" class="fade-in">
+      <p class="sec-eyebrow">contato</p>
+      <h2 class="sec-title">Vamos conversar</h2>
+      <div class="contact-grid">
+        <a class="contact-item" href="mailto:moniquepavan@outlook.com">
+          <div class="contact-icon icon-email">✉</div>
+          <div class="contact-info"><p>email</p><span>moniquepavan@outlook.com</span></div>
+        </a>
+        <a class="contact-item" href="https://github.com/moniquepavan" target="_blank" rel="noopener">
+          <div class="contact-icon icon-github">⌥</div>
+          <div class="contact-info"><p>github</p><span>github.com/moniquepavan</span></div>
+        </a>
+        <a class="contact-item" href="https://www.linkedin.com/in/monique-pavan-297a6519a/" target="_blank" rel="noopener">
+          <div class="contact-icon icon-linkedin">in</div>
+          <div class="contact-info"><p>linkedin</p><span>/in/monique-pavan</span></div>
+        </a>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <div class="inner">
+      <p>© 2026 · Monique Pavan</p>
+      <p>feito com código <span class="heart">♥</span> e café</p>
+    </div>
+  </footer>
+
+  <script>
+    const obs = new IntersectionObserver(
+      es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.08 }
+    );
+    document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+  </script>
+
+</body>
+</html>
